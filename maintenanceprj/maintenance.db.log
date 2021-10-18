@@ -1,0 +1,21 @@
+/*C3*/SET SCHEMA PUBLIC
+drop table if exists action_maintenance CASCADE 
+drop table if exists vehicule CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table action_maintenance (id bigint not null, date_debut timestamp, date_fin timestamp, frequence integer not null, niveau integer not null, vehicule_id bigint, primary key (id))
+create table vehicule (id bigint not null, couleur varchar(255), date_dachat timestamp, matricule varchar(255), type varchar(255), action_maintenances_id bigint not null, primary key (id))
+alter table action_maintenance add constraint FK7a2js2rhy5n0mtggaiyeyxbm7 foreign key (vehicule_id) references vehicule
+alter table vehicule add constraint FKbx6bljltp3lbr9unjvo8oc0j6 foreign key (action_maintenances_id) references action_maintenance
+INSERT INTO ACTION_MAINTENANCE VALUES(1,NULL,NULL,5,2,NULL)
+INSERT INTO ACTION_MAINTENANCE VALUES(2,NULL,NULL,2,4,NULL)
+INSERT INTO ACTION_MAINTENANCE VALUES(3,NULL,NULL,3,3,NULL)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+INSERT INTO ACTION_MAINTENANCE VALUES(5,NULL,NULL,3,3,NULL)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
+COMMIT
+INSERT INTO ACTION_MAINTENANCE VALUES(6,NULL,NULL,3,3,NULL)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
+COMMIT
